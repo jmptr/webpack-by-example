@@ -1,5 +1,11 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const extractTextLoader = ExtractTextPlugin.extract({
+  fallback: 'style-loader',
+  use: 'css-loader',
+});
 
 module.exports = {
 
@@ -17,13 +23,14 @@ module.exports = {
 
       {
         test: /\.(css)$/i,
-        use: ['style-loader', 'css-loader'],
+        use: extractTextLoader,
       },
 
     ],
   },
 
   plugins: [
+    new ExtractTextPlugin({ filename: '[name].css'}),
     new CleanWebpackPlugin(['./dist']),
     new HtmlWebpackPlugin({
       title: 'webpack by example',
