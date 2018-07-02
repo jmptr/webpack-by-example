@@ -9,10 +9,6 @@ const extractTextLoader = ExtractTextPlugin.extract({
 });
 
 module.exports = {
-  mode: 'development',
-
-  devtool: 'source-map',
-
   module: {
     rules: [
       {
